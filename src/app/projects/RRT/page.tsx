@@ -13,7 +13,7 @@ import Image from "next/image";
 import type { articleElem } from "@/components/ContentContainer";
 
 const base = "/projects/RRT";
-const mediaBase = "/projects/RRT/media";
+const mediaBase = path.join(base, "media");
 
 const pageContent: articleElem[] = [
   {

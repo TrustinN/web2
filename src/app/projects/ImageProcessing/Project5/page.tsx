@@ -10,7 +10,6 @@ import {
   Article,
 } from "@/components/ContentContainer";
 import type { articleElem } from "@/components/ContentContainer";
-import { Float } from "@/components/Layouts";
 import { Sidebar } from "@/components/Sidebar";
 
 import { Figure, ImageContainer } from "@/components/ImageContainer";
@@ -726,826 +725,818 @@ const pageContent: articleElem[] = [
   },
   {
     id: "Hand-Drawn/Web Images",
-    content: <div>
-              <h2>Editing Hand-Drawn/Web Images</h2>
-              <p>We can also denoise hand-drawn and web images:</p>
-              <div class="centered">
-                <div class="carousel-container" id="carousel2">
-                  <button class="carousel-button" onclick="shiftLeft(2)">
-                    &#9664;
-                  </button>
-                  <div
-                    class="image-container"
-                    style="--grid-cols: repeat(5, 1fr)"
-                  >
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/t_1.png"
-                      alt="Web Edit t1"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/t_3.png"
-                      alt="Web Edit t3"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/t_5.png"
-                      alt="Web Edit t5"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/t_7.png"
-                      alt="Web Edit t7"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/t_10.png"
-                      alt="Web Edit t10"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/t_20.png"
-                      alt="Web Edit t20"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/web_edits/original.png"
-                      alt="Base Image"
-                      loading="lazy"
-                    />
-                  </div>
-                  <button class="carousel-button" onclick="shiftRight(2)">
-                    &#9654;
-                  </button>
-                </div>
+    content: (
+      <div>
+        <h2>Editing Hand-Drawn/Web Images</h2>
+        <p>We can also denoise hand-drawn and web images:</p>
+        <ImageContainer columns={5}>
+          <Image
+            src={path.join(mediaBase, "/web_edits/t_1.png")}
+            width="64"
+            height="64"
+            alt="Web Edit t1"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/web_edits/t_3.png")}
+            width="64"
+            height="64"
+            alt="Web Edit t3"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/web_edits/t_5.png")}
+            width="64"
+            height="64"
+            alt="Web Edit t5"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/web_edits/t_7.png")}
+            width="64"
+            height="64"
+            alt="Web Edit t7"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/web_edits/t_10.png")}
+            width="64"
+            height="64"
+            alt="Web Edit t10"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/web_edits/t_20.png")}
+            width="64"
+            height="64"
+            alt="Web Edit t20"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/web_edits/original.png")}
+            width="64"
+            height="64"
+            alt="Base Image"
+            loading="lazy"
+          />
+        </ImageContainer>
 
-                <div class="carousel-container" id="carousel3">
-                  <button class="carousel-button" onclick="shiftLeft(3)">
-                    &#9664;
-                  </button>
-                  <div
-                    class="image-container"
-                    style="--grid-cols: repeat(5, 1fr)"
-                  >
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/t_1.png"
-                      alt="Hand-Drawn Edit t1"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/t_3.png"
-                      alt="Hand-Drawn Edit t3"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/t_5.png"
-                      alt="Hand-Drawn Edit t5"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/t_7.png"
-                      alt="Hand-Drawn Edit t7"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/t_10.png"
-                      alt="Hand-Drawn Edit t10"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/t_20.png"
-                      alt="Hand-Drawn Edit t20"
-                      loading="lazy"
-                    />
-                    <img
-                      class="carousel-image"
-                      src="./media/hand_drawn_edits/original.png"
-                      alt="Base Image"
-                      loading="lazy"
-                    />
-                  </div>
-                  <button class="carousel-button" onclick="shiftRight(3)">
-                    &#9654;
-                  </button>
-                </div>
-              </div>
-
-    </div>
-  },
-  {id: "Inpainting", 
-      content: <div>
-              <h2>Inpainting</h2>
-              <p>
-                We can also inpaint an image given the work done so far. Rather
-                than subtracting out the noise calculated at each step from our
-                entire image, we only subtract out the calculated noise in a
-                section of our image. This means that for all noise outside the
-                area we want to inpaint, we replace it with the original image
-                processed through the forward noising function.
-              </p>
-              <div class="centered">
-                <div class="carousel-container" id="carousel4">
-                  <button class="carousel-button" onclick="shiftLeft(4)">
-                    &#9664;
-                  </button>
-                  <div
-                    class="image-container"
-                    style="--grid-cols: repeat(5, 1fr); width: 100%"
-                  >
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_1.png"
-                        alt="Campanile Inpaint 1"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=990$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_2.png"
-                        alt="Campanile Inpaint 2"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=840$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_3.png"
-                        alt="Campanile Inpaint 3"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=690$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_4.png"
-                        alt="Campanile Inpaint 4"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=540$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_5.png"
-                        alt="Campanile Inpaint 5"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=390$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_6.png"
-                        alt="Campanile Inpaint 6"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=240$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_7.png"
-                        alt="Campanile Inpaint 7"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=90$</figcaption>
-                    </figure>
-                    <figure class="carousel-image">
-                      <img
-                        src="./media/inpainting/denoise_8.png"
-                        alt="Campanile Inpaint 8"
-                        loading="lazy"
-                      />
-                      <figcaption>$t=0$</figcaption>
-                    </figure>
-                  </div>
-                  <button class="carousel-button" onclick="shiftRight(4)">
-                    &#9654;
-                  </button>
-                </div>
-              </div>
-
+        <ImageContainer columns={5}>
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/t_1.png")}
+            width="64"
+            height="64"
+            alt="Hand-Drawn Edit t1"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/t_3.png")}
+            width="64"
+            height="64"
+            alt="Hand-Drawn Edit t3"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/t_5.png")}
+            width="64"
+            height="64"
+            alt="Hand-Drawn Edit t5"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/t_7.png")}
+            width="64"
+            height="64"
+            alt="Hand-Drawn Edit t7"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/t_10.png")}
+            width="64"
+            height="64"
+            alt="Hand-Drawn Edit t10"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/t_20.png")}
+            width="64"
+            height="64"
+            alt="Hand-Drawn Edit t20"
+            loading="lazy"
+          />
+          <Image
+            src={path.join(mediaBase, "/hand_drawn_edits/original.png")}
+            width="64"
+            height="64"
+            alt="Base Image"
+            loading="lazy"
+          />
+        </ImageContainer>
       </div>
-  }, {
-      id: "Text Conditional Translation",
-      content:<div>
-              <h2>Text Conditional Image to Image Translation</h2>
-              <p>
-                Rather than keeping the prompt set to "a high quality photo", we
-                can replace it with a text prompt from the prompt embedding.
-                This means that rather than denoising unconditionally, we
-                denoise based on the prompt given, which will give the image a
-                push towards what is specified by the prompt.
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="--grid-cols: repeat(6, 1fr)"
-                >
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-margin: 0;
-                      "
-                    >
-                      <img
-                        class="dissolve"
-                        src="./media/text_conditioned/t_1/denoise_8.png"
-                        alt="Campanile Translation Rocket t_1"
-                        onmouseover="resetSiblingGif(this)"
-                        loading="lazy"
-                      />
-                      <img
-                        class="emerge"
-                        src="./media/text_conditioned/t_1/output.gif"
-                        alt="Campanile Translation Rocket t_1 gif"
-                        loading="lazy"
-                      />
-                    </div>
-                    <figcaption>$t = 1$</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-margin: 0;
-                      "
-                    >
-                      <img
-                        class="dissolve"
-                        src="./media/text_conditioned/t_2/denoise_8.png"
-                        alt="Campanile Translation Rocket t_2"
-                        onmouseover="resetSiblingGif(this)"
-                        loading="lazy"
-                      />
-                      <img
-                        class="emerge"
-                        src="./media/text_conditioned/t_2/output.gif"
-                        alt="Campanile Translation Rocket t_2 gif"
-                        loading="lazy"
-                      />
-                    </div>
-                    <figcaption>$t = 3$</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-margin: 0;
-                      "
-                    >
-                      <img
-                        class="dissolve"
-                        src="./media/text_conditioned/t_3/denoise_8.png"
-                        alt="Campanile Translation Rocket t_3"
-                        onmouseover="resetSiblingGif(this)"
-                        loading="lazy"
-                      />
-                      <img
-                        class="emerge"
-                        src="./media/text_conditioned/t_3/output.gif"
-                        alt="Campanile Translation Rocket t_3 gif"
-                        loading="lazy"
-                      />
-                    </div>
-                    <figcaption>$t = 5$</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-margin: 0;
-                      "
-                    >
-                      <img
-                        class="dissolve"
-                        src="./media/text_conditioned/t_4/denoise_7.png"
-                        alt="Campanile Translation Rocket t_4"
-                        onmouseover="resetSiblingGif(this)"
-                        loading="lazy"
-                      />
-                      <img
-                        class="emerge"
-                        src="./media/text_conditioned/t_4/output.gif"
-                        alt="Campanile Translation Rocket t_4 gif"
-                        loading="lazy"
-                      />
-                    </div>
-                    <figcaption>$t = 7$</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-margin: 0;
-                      "
-                    >
-                      <img
-                        class="dissolve"
-                        src="./media/text_conditioned/t_5/denoise_7.png"
-                        alt="Campanile Translation Rocket t_5"
-                        onmouseover="resetSiblingGif(this)"
-                        loading="lazy"
-                      />
-                      <img
-                        class="emerge"
-                        src="./media/text_conditioned/t_5/output.gif"
-                        alt="Campanile Translation Rocket t_5 gif"
-                        loading="lazy"
-                      />
-                    </div>
-                    <figcaption>$t = 10$</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-margin: 0;
-                      "
-                    >
-                      <img
-                        class="dissolve"
-                        src="./media/text_conditioned/t_6/denoise_5.png"
-                        alt="Campanile Translation Rocket t_6"
-                        onmouseover="resetSiblingGif(this)"
-                        loading="lazy"
-                      />
-                      <img
-                        class="emerge"
-                        src="./media/text_conditioned/t_6/output.gif"
-                        alt="Campanile Translation Rocket t_6 gif"
-                        loading="lazy"
-                      />
-                    </div>
-                    <figcaption>$t = 20$</figcaption>
-                  </figure>
-                </div>
-              </div>
-              <p>
-                We see that the images look more similar to the base image
-                (Campanile) when we start off with less noise, but still
-                resembles a rocket, which was the prompt embed used.
-              </p>
-
-      </div>
-  }, 
-  {
-      id: "Visual Anagrams",
-      content: <div>
-              <h2>Visual Anagrams</h2>
-              <p>
-                We can also flip the image at each step, denoise and flip it
-                back to make a separate denoising step towards a different
-                prompt embed. This allows us to make a flip illusion, where
-                flipping the image reveals a hidden image. Hover over the images
-                to visualize the result:
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(4, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/flip_illusion/i1/denoise_9.png"
-                      alt="Flip Illusion Skull, Waterfall"
-                      class="flip"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Waterfall</figcaption>
-                    <figcaption class="emerge">A Skull</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/flip_illusion/i2/denoise_9.png"
-                      alt="Flip Illusion Man, Campfire"
-                      class="flip"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Campfire</figcaption>
-                    <figcaption class="emerge">A Man</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/flip_illusion/i3/denoise_9.png"
-                      alt="Flip Illusion Man with Hat, Campfire"
-                      class="flip"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Campfire</figcaption>
-                    <figcaption class="emerge">A Man Wearing a Hat</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/flip_illusion/i4/denoise_9.png"
-                      alt="Flip Illusion Dog, Snow Mountain"
-                      class="flip"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Snowy Village</figcaption>
-                    <figcaption class="emerge">A Dog</figcaption>
-                  </figure>
-                </div>
-              </div>
-
-      </div>
-  }, 
-  {
-      id: "Hybrid Images",
-      content: <div>
-
-              <h2>Hybrid Images</h2>
-              <p>
-                A hybrid image is one where one subject in an image dominates
-                when viewed up close and a different one dominates when viewed
-                afar. We can again modify the noise added, this time taking the
-                low frequencies of the predicted noise from one prompt embedding
-                and adding it to the high frequencies of a different prompt
-                embedding. Hover over the images to see the result:
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(3, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/hybrid/skull_waterfall/denoise_9.png"
-                      alt="Skull Waterfall hybrid"
-                      class="zoom-out"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Waterfall</figcaption>
-                    <figcaption class="emerge">A Skull</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/hybrid/skull_winter/denoise_9.png"
-                      alt="Skull Snow Mountain hybrid"
-                      class="zoom-out"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Snow Mountain</figcaption>
-                    <figcaption class="emerge">A Skull</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/hybrid/pencil_snow/denoise_9.png"
-                      alt="Pencil Snow Mountain hybrid"
-                      class="zoom-out"
-                      loading="lazy"
-                    />
-                    <figcaption class="dissolve">A Snowy Village</figcaption>
-                    <figcaption class="emerge">A Pencil</figcaption>
-                  </figure>
-                </div>
-              </div>
-      </div>
+    ),
   },
   {
-      id: "Unconditional Unet",
-      content: <div>
-              <h2>Unconditional Unet</h2>
-              <p>
-                The unet is a convolutional network designed to output images
-                from an input of a images. In the downward part of the net, we
-                run the images through convolution and max pooling layers to
-                increase the perception of the network. Going back up, we want
-                to recover our image, so we add concatenations with information
-                from our previous layers.
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(1, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/unconditional_unet/architecture.png"
-                      alt="unet architecture"
-                    />
-                    <figcaption>Unet Design</figcaption>
-                  </figure>
-                </div>
-              </div>
-              <p>
-                In a one step denoising process, we can use our unet to directly
-                predict the clean image from a noisy input. To train the
-                unconditional network, we fix the noise level to $\sigma = 0.5$
-                and noise an image by the given formula: \begin{equation*} x =
-                x_{0} + \varepsilon \end{equation*} where \begin{equation*}
-                \varepsilon \sim \mathcal{N}(0, \sigma^{2}) \end{equation*} We
-                feed $x$ into the network and estimate the loss between
-                $\hat{x}$ and $x_{0}$
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(1, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/unconditional_unet/loss.png"
-                      alt="Unconditional Unet Loss"
-                      loading="lazy"
-                    />
-                    <figcaption>After 5 epochs</figcaption>
-                  </figure>
-                </div>
-              </div>
-              <p>
-                Here are some results, where the clean image is on the left, the
-                noisy image is on the middle, and the predicted image is on the
-                right of each figure:
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(2, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/unconditional_unet/epoch_1.png"
-                      alt="Epoch 1 Denoise"
-                      loading="lazy"
-                    />
-                    <figcaption>Epoch 1 Denoising</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/unconditional_unet/epoch_5.png"
-                      alt="Epoch 5 Denoise"
-                      loading="lazy"
-                    />
-                    <figcaption>Epoch 5 Denoising</figcaption>
-                  </figure>
-                </div>
-              </div>
-              <p>
-                The unconditional unet does not do very well with higher noise
-                levels, as there was no input on the amount of noise in our
-                training. From left to right, the model was given images with
-                noise levels of $0.0, 0.2, 0.4, 0.6, 0.8, $ and $1.0$
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(1, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/unconditional_unet/sampling_1.png"
-                      alt="Various noise level denoisings"
-                      loading="lazy"
-                    />
-                    <figcaption>Epoch 1 Denoising</figcaption>
-                  </figure>
-                  <figure>
-                    <img
-                      src="./media/unconditional_unet/sampling_5.png"
-                      alt="Various noise level denoisings"
-                      loading="lazy"
-                    />
-                    <figcaption>Epoch 5 Denoising</figcaption>
-                  </figure>
-                </div>
-              </div>
-
+    id: "Inpainting",
+    content: (
+      <div>
+        <h2>Inpainting</h2>
+        <p>
+          We can also inpaint an image given the work done so far. Rather than
+          subtracting out the noise calculated at each step from our entire
+          image, we only subtract out the calculated noise in a section of our
+          image. This means that for all noise outside the area we want to
+          inpaint, we replace it with the original image processed through the
+          forward noising function.
+        </p>
+        <ImageContainer columns={5}>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_1.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 1"
+              loading="lazy"
+            />
+            <figcaption>$t=990$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_2.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 2"
+              loading="lazy"
+            />
+            <figcaption>$t=840$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_3.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 3"
+              loading="lazy"
+            />
+            <figcaption>$t=690$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_4.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 4"
+              loading="lazy"
+            />
+            <figcaption>$t=540$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_5.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 5"
+              loading="lazy"
+            />
+            <figcaption>$t=390$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_6.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 6"
+              loading="lazy"
+            />
+            <figcaption>$t=240$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_7.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 7"
+              loading="lazy"
+            />
+            <figcaption>$t=90$</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/inpainting/denoise_8.png")}
+              width="64"
+              height="64"
+              alt="Campanile Inpaint 8"
+              loading="lazy"
+            />
+            <figcaption>$t=0$</figcaption>
+          </Figure>
+        </ImageContainer>
       </div>
+    ),
   },
-  { 
-  id: "Conditional Unet",
-    content: <div>
-              <h2>Conditional Unet</h2>
-              <p>
-                In a conditional unet, more information is given to the model
-                and perform the denoising iteratively for better results. We
-                define a new one step noising process: \begin{equation*} x_{t} =
-                \sqrt{1 - \overline{\alpha_{t}}}x_{0} +
-                \sqrt{\overline{\alpha_{t}}}\varepsilon \end{equation*} where
-                \begin{equation*} \varepsilon \sim \mathcal{N}(0, I)
-                \end{equation*} We want to predict the cleaner image given a
-                noisy image and this is given by some function of $x_{t},
-                x_{0}$: \begin{equation*} p(x_{t - 1} \mid x_{t}) =
-                \mathcal{N}(\mu_{t}(x_{t}, x_{0}), \tilde{\beta} I)
-                \end{equation*} so \begin{equation*} x_{t - 1} =
-                \dfrac{\sqrt{\overline{\alpha_{t - 1}}}\beta_{t}}{1 -
-                \overline{\alpha_{t}}}x_{0} + \dfrac{\sqrt{\alpha_{t}}(1 -
-                \overline{\alpha}_{t - 1})}{1 - \overline{\alpha}_{t}}x_{t} +
-                \tilde{\beta}_{t}z, \, \tilde{\beta}_{t} = \dfrac{1 -
-                \overline{\alpha}_{t - 1}}{1 - \overline{\alpha}_{t}}\beta_{t}
-                \end{equation*} We define our $\beta_{t}$ as linear in $[0,
-                999]$, $\overline{\alpha}_{t} = 1 - \beta_{t}$ and $\alpha_{t} =
-                \prod_{i = 0}^{t}\overline{\alpha}_{i}$. This gives us a way to
-                recover a cleaner image $x_{t - 1}$ in terms of the predicted
-                noise $\hat{\varepsilon}$ and $x_{t}$.
-              </p>
-              <p>
-                We first update the architecture by embedding the time and label
-                of the training data. This is done by running both these through
-                a linear layer, gelu, then another linear layer. We do this two
-                times and embed at the unflatten layer and up convolve layer:
-              </p>
-              \begin{equation*} x = c \cdot x + t \end{equation*}
-              <p>
-                The forward process in the conditional unet is mostly the same.
-                We add noise given by our new one step noising process. A mask
-                is also created with a certain probability to run unconditioned
-                predictions to make the model more flexible. Instead of
-                predicting the clean image, the model will predict the noise and
-                we update it based on $MSE(\hat{\varepsilon}, \varepsilon)$
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(1, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <img
-                      src="./media/conditional_unet/loss.png"
-                      alt="Conditional Unet Loss"
-                      loading="lazy"
-                    />
-                    <figcaption>After 20 Epochs</figcaption>
-                  </figure>
-                </div>
-              </div>
-              <p>
-                In the sampling/denoising process, we iteratively predict the
-                cleaner image given the formula for $x_{t - 1}$ calculated
-                above. Hover over the images to see the denoising in action:
-              </p>
-              <div class="centered">
-                <div
-                  class="image-container"
-                  style="
-                    --grid-cols: repeat(1, 1fr);
-                    --image-container-width: 40rem;
-                  "
-                >
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-width: 40rem;
-                      "
-                    >
-                      <img
-                        src="./media/conditional_unet/sampling1.jpeg"
-                        alt="Conditional Unet Sampling 1 jpeg"
-                        loading="lazy"
-                        onmouseover="resetSiblingGif(this)"
-                        class="dissolve"
-                      />
-                      <img
-                        src="./media/conditional_unet/sampling1.gif"
-                        alt="Conditional Unet Sampling 1"
-                        loading="lazy"
-                        class="emerge"
-                      />
-                    </div>
-                    <figcaption>Epoch 1</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-width: 40rem;
-                      "
-                    >
-                      <img
-                        src="./media/conditional_unet/sampling5.jpeg"
-                        alt="Conditional Unet Sampling 5 jpeg"
-                        loading="lazy"
-                        onmouseover="resetSiblingGif(this)"
-                        class="dissolve"
-                      />
-                      <img
-                        src="./media/conditional_unet/sampling5.gif"
-                        alt="Conditional Unet Sampling 5"
-                        loading="lazy"
-                        class="emerge"
-                      />
-                    </div>
-                    <figcaption>Epoch 5</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-width: 40rem;
-                      "
-                    >
-                      <img
-                        src="./media/conditional_unet/sampling10.jpeg"
-                        alt="Conditional Unet Sampling 10 jpeg"
-                        loading="lazy"
-                        onmouseover="resetSiblingGif(this)"
-                        class="dissolve"
-                      />
-                      <img
-                        src="./media/conditional_unet/sampling10.gif"
-                        alt="Conditional Unet Sampling 10"
-                        loading="lazy"
-                        class="emerge"
-                      />
-                    </div>
-                    <figcaption>Epoch 10</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-width: 40rem;
-                      "
-                    >
-                      <img
-                        src="./media/conditional_unet/sampling15.jpeg"
-                        alt="Conditional Unet Sampling 15 jpeg"
-                        loading="lazy"
-                        onmouseover="resetSiblingGif(this)"
-                        class="dissolve"
-                      />
-                      <img
-                        src="./media/conditional_unet/sampling15.gif"
-                        alt="Conditional Unet Sampling 15"
-                        loading="lazy"
-                        class="emerge"
-                      />
-                    </div>
-                    <figcaption>Epoch 15</figcaption>
-                  </figure>
-                  <figure>
-                    <div
-                      class="image-container"
-                      style="
-                        --grid-cols: repeat(1, 1fr);
-                        --image-container-width: 40rem;
-                      "
-                    >
-                      <img
-                        src="./media/conditional_unet/sampling20.jpeg"
-                        alt="Conditional Unet Sampling 20 jpeg"
-                        loading="lazy"
-                        onmouseover="resetSiblingGif(this)"
-                        class="dissolve"
-                      />
-                      <img
-                        src="./media/conditional_unet/sampling20.gif"
-                        alt="Conditional Unet Sampling 20"
-                        loading="lazy"
-                        class="emerge"
-                      />
-                    </div>
-                    <figcaption>Epoch 20</figcaption>
-                  </figure>
-                </div>
-              </div>
-    </div>
-  }
+  {
+    id: "Text Conditional Translation",
+    content: (
+      <div>
+        <h2>Text Conditional Image to Image Translation</h2>
+        <p>
+          Rather than keeping the prompt set to &quot;a high quality
+          photo&quot;, we can replace it with a text prompt from the prompt
+          embedding. This means that rather than denoising unconditionally, we
+          denoise based on the prompt given, which will give the image a push
+          towards what is specified by the prompt.
+        </p>
+        <ImageContainer columns={6}>
+          <Figure>
+            <ImageContainer>
+              <Image
+                className="dissolve"
+                src={path.join(
+                  mediaBase,
+                  "/text_conditioned/t_1/denoise_8.png",
+                )}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_1"
+                // onMouseOver="resetSiblingGif(this)"
+                loading="lazy"
+              />
+              <Image
+                className="emerge"
+                src={path.join(mediaBase, "/text_conditioned/t_1/output.gif")}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_1 gif"
+                loading="lazy"
+              />
+            </ImageContainer>
+            <figcaption>$t = 1$</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                className="dissolve"
+                src={path.join(
+                  mediaBase,
+                  "/text_conditioned/t_2/denoise_8.png",
+                )}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_2"
+                // onMouseOver="resetSiblingGif(this)"
+                loading="lazy"
+              />
+              <Image
+                className="emerge"
+                src={path.join(mediaBase, "/text_conditioned/t_2/output.gif")}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_2 gif"
+                loading="lazy"
+              />
+            </ImageContainer>
+            <figcaption>$t = 3$</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                className="dissolve"
+                src={path.join(
+                  mediaBase,
+                  "/text_conditioned/t_3/denoise_8.png",
+                )}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_3"
+                // onMouseOver="resetSiblingGif(this)"
+                loading="lazy"
+              />
+              <Image
+                className="emerge"
+                src={path.join(mediaBase, "/text_conditioned/t_3/output.gif")}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_3 gif"
+                loading="lazy"
+              />
+            </ImageContainer>
+            <figcaption>$t = 5$</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                className="dissolve"
+                src={path.join(
+                  mediaBase,
+                  "/text_conditioned/t_4/denoise_7.png",
+                )}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_4"
+                // onMouseOver="resetSiblingGif(this)"
+                loading="lazy"
+              />
+              <Image
+                className="emerge"
+                src={path.join(mediaBase, "/text_conditioned/t_4/output.gif")}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_4 gif"
+                loading="lazy"
+              />
+            </ImageContainer>
+            <figcaption>$t = 7$</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                className="dissolve"
+                src={path.join(
+                  mediaBase,
+                  "/text_conditioned/t_5/denoise_7.png",
+                )}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_5"
+                // onMouseOver="resetSiblingGif(this)"
+                loading="lazy"
+              />
+              <Image
+                className="emerge"
+                src={path.join(mediaBase, "/text_conditioned/t_5/output.gif")}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_5 gif"
+                loading="lazy"
+              />
+            </ImageContainer>
+            <figcaption>$t = 10$</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                className="dissolve"
+                src={path.join(
+                  mediaBase,
+                  "/text_conditioned/t_6/denoise_5.png",
+                )}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_6"
+                // onMouseOver="resetSiblingGif(this)"
+                loading="lazy"
+              />
+              <Image
+                className="emerge"
+                src={path.join(mediaBase, "/text_conditioned/t_6/output.gif")}
+                width="64"
+                height="64"
+                alt="Campanile Translation Rocket t_6 gif"
+                loading="lazy"
+              />
+            </ImageContainer>
+            <figcaption>$t = 20$</figcaption>
+          </Figure>
+        </ImageContainer>
+        <p>
+          We see that the images look more similar to the base image (Campanile)
+          when we start off with less noise, but still resembles a rocket, which
+          was the prompt embed used.
+        </p>
+      </div>
+    ),
+  },
+  {
+    id: "Visual Anagrams",
+    content: (
+      <div>
+        <h2>Visual Anagrams</h2>
+        <p>
+          We can also flip the image at each step, denoise and flip it back to
+          make a separate denoising step towards a different prompt embed. This
+          allows us to make a flip illusion, where flipping the image reveals a
+          hidden image. Hover over the images to visualize the result:
+        </p>
+        <ImageContainer columns={4}>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/flip_illusion/i1/denoise_9.png")}
+              alt="Flip Illusion Skull, Waterfall"
+              width="64"
+              height="64"
+              className="flip"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Waterfall</figcaption>
+            <figcaption className="emerge">A Skull</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/flip_illusion/i2/denoise_9.png")}
+              alt="Flip Illusion Man, Campfire"
+              width="64"
+              height="64"
+              className="flip"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Campfire</figcaption>
+            <figcaption className="emerge">A Man</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src="./media/flip_illusion/i3/denoise_9.png"
+              alt="Flip Illusion Man with Hat, Campfire"
+              width="64"
+              height="64"
+              className="flip"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Campfire</figcaption>
+            <figcaption className="emerge">A Man Wearing a Hat</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/flip_illusion/i4/denoise_9.png")}
+              alt="Flip Illusion Dog, Snow Mountain"
+              width="64"
+              height="64"
+              className="flip"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Snowy Village</figcaption>
+            <figcaption className="emerge">A Dog</figcaption>
+          </Figure>
+        </ImageContainer>
+      </div>
+    ),
+  },
+  {
+    id: "Hybrid Images",
+    content: (
+      <div>
+        <h2>Hybrid Images</h2>
+        <p>
+          A hybrid image is one where one subject in an image dominates when
+          viewed up close and a different one dominates when viewed afar. We can
+          again modify the noise added, this time taking the low frequencies of
+          the predicted noise from one prompt embedding and adding it to the
+          high frequencies of a different prompt embedding. Hover over the
+          images to see the result:
+        </p>
+        <ImageContainer columns={3}>
+          <Figure>
+            <Image
+              src={path.join(
+                mediaBase,
+                "/hybrid/skull_waterfall/denoise_9.png",
+              )}
+              width="64"
+              height="64"
+              alt="Skull Waterfall hybrid"
+              className="zoom-out"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Waterfall</figcaption>
+            <figcaption className="emerge">A Skull</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/hybrid/skull_winter/denoise_9.png")}
+              width="64"
+              height="64"
+              alt="Skull Snow Mountain hybrid"
+              className="zoom-out"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Snow Mountain</figcaption>
+            <figcaption className="emerge">A Skull</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/hybrid/pencil_snow/denoise_9.png")}
+              width="64"
+              height="64"
+              alt="Pencil Snow Mountain hybrid"
+              className="zoom-out"
+              loading="lazy"
+            />
+            <figcaption className="dissolve">A Snowy Village</figcaption>
+            <figcaption className="emerge">A Pencil</figcaption>
+          </Figure>
+        </ImageContainer>
+      </div>
+    ),
+  },
+  {
+    id: "Unconditional Unet",
+    content: (
+      <div>
+        <h2>Unconditional Unet</h2>
+        <p>
+          The unet is a convolutional network designed to output images from an
+          input of a images. In the downward part of the net, we run the images
+          through convolution and max pooling layers to increase the perception
+          of the network. Going back up, we want to recover our image, so we add
+          concatenations with information from our previous layers.
+        </p>
+        <ImageContainer>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/unconditional_unet/architecture.png")}
+              width="64"
+              height="64"
+              alt="unet architecture"
+            />
+            <figcaption>Unet Design</figcaption>
+          </Figure>
+        </ImageContainer>
+        <p>
+          In a one step denoising process, we can use our unet to directly
+          predict the clean image from a noisy input. To train the unconditional
+          network, we fix the noise level to{" "}
+          <MathJax inline={true}>{"\\(\\sigma = 0.5\\)"}</MathJax>
+          and noise an image by the given formula:{" "}
+          <MathJax>
+            {"\\begin{equation*} x = x_{0} + \\varepsilon \\end{equation*}"}
+          </MathJax>{" "}
+          where{" "}
+          <MathJax>
+            {
+              "\\begin{equation*} \\varepsilon \\sim \\mathcal{N}(0, \\sigma^{2}) \\end{equation*}"
+            }
+          </MathJax>{" "}
+          We feed <MathJax inline={true}>{"\\(x\\)"}</MathJax> into the network
+          and estimate the loss between
+          <MathJax inline={true}>{"\\(\\hat{x}\\)"}</MathJax> and{" "}
+          <MathJax inline={true}>{"\\(x_{0}\\)"}</MathJax>
+        </p>
+        <ImageContainer>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/unconditional_unet/loss.png")}
+              width="64"
+              height="64"
+              alt="Unconditional Unet Loss"
+              loading="lazy"
+            />
+            <figcaption>After 5 epochs</figcaption>
+          </Figure>
+        </ImageContainer>
+        <p>
+          Here are some results, where the clean image is on the left, the noisy
+          image is on the middle, and the predicted image is on the right of
+          each figure:
+        </p>
+        <ImageContainer columns={2}>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/unconditional_unet/epoch_1.png")}
+              width="64"
+              height="64"
+              alt="Epoch 1 Denoise"
+              loading="lazy"
+            />
+            <figcaption>Epoch 1 Denoising</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/unconditional_unet/epoch_5.png")}
+              width="64"
+              height="64"
+              alt="Epoch 5 Denoise"
+              loading="lazy"
+            />
+            <figcaption>Epoch 5 Denoising</figcaption>
+          </Figure>
+        </ImageContainer>
+        <p>
+          The unconditional unet does not do very well with higher noise levels,
+          as there was no input on the amount of noise in our training. From
+          left to right, the model was given images with noise levels of{" "}
+          <MathJax inline={true}>{"\\(0.0, 0.2, 0.4, 0.6, 0.8, \\)"}</MathJax>{" "}
+          and<MathJax inline={true}>{"\\(1.0\\)"}</MathJax>
+        </p>
+        <ImageContainer>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/unconditional_unet/sampling_1.png")}
+              alt="Various noise level denoisings"
+              width="64"
+              height="64"
+              loading="lazy"
+            />
+            <figcaption>Epoch 1 Denoising</figcaption>
+          </Figure>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/unconditional_unet/sampling_5.png")}
+              alt="Various noise level denoisings"
+              width="64"
+              height="64"
+              loading="lazy"
+            />
+            <figcaption>Epoch 5 Denoising</figcaption>
+          </Figure>
+        </ImageContainer>
+      </div>
+    ),
+  },
+  {
+    id: "Conditional Unet",
+    content: (
+      <div>
+        <h2>Conditional Unet</h2>
+        <p>
+          In a conditional unet, more information is given to the model and
+          perform the denoising iteratively for better results. We define a new
+          one step noising process:{" "}
+          <MathJax>
+            {
+              "\\begin{equation*} x_{t} = \\sqrt{1 - \\overline{\\alpha_{t}}}x_{0} + \\sqrt{\\overline{\\alpha_{t}}}\\varepsilon \\end{equation*}"
+            }
+          </MathJax>{" "}
+          where
+          <MathJax>
+            {
+              "\\begin{equation*} \\varepsilon \\sim \\mathcal{N}(0, I) \\end{equation*}"
+            }
+          </MathJax>{" "}
+          We want to predict the cleaner image given a noisy image and this is
+          given by some function of{" "}
+          <MathJax inline={true}>{"\\(x_{t}, x_{0}\\)"}</MathJax>:
+          <MathJax>
+            {
+              "\\begin{equation*} p(x_{t - 1} \\mid x_{t}) = \\mathcal{N}(\\mu_{t}(x_{t}, x_{0}), \\tilde{\\beta} I) \\end{equation*}"
+            }
+          </MathJax>{" "}
+          so
+          <MathJax>
+            {
+              "\\begin{equation*} x_{t - 1} = \\dfrac{\\sqrt{\\overline{\\alpha_{t - 1}}}\\beta_{t}}{1 - \\overline{\\alpha_{t}}}x_{0} + \\dfrac{\\sqrt{\\alpha_{t}}(1 - \\overline{\\alpha}_{t - 1})}{1 - \\overline{\\alpha}_{t}}x_{t} + \\tilde{\\beta}_{t}z, \\, \\tilde{\\beta}_{t} = \\dfrac{1 - \\overline{\\alpha}_{t - 1}}{1 - \\overline{\\alpha}_{t}}\\beta_{t} \\end{equation*}"
+            }
+          </MathJax>{" "}
+          We define our
+          <MathJax inline={true}>{"\\(\\beta_{t}\\)"}</MathJax> as linear in
+          <MathJax inline={true}>
+            {"\\([0, 999]\\), \\(\\overline{\\alpha}_{t} = 1 - \\beta_{t}\\)"}
+          </MathJax>{" "}
+          and{" "}
+          <MathJax inline={true}>
+            {"\\alpha_{t} = \\prod_{i = 0}^{t}\\overline{\\alpha}_{i}"}
+          </MathJax>
+          . This gives us a way to recover a cleaner image{" "}
+          <MathJax inline={true}>{"\\(x_{t - 1}\\)"}</MathJax> in terms of the
+          predicted noise
+          <MathJax inline={true}>{"\\(\\hat{\\varepsilon}\\)"}</MathJax>
+          and <MathJax inline={true}>{"\\(x_{t}\\)"}</MathJax>.
+        </p>
+        <p>
+          We first update the architecture by embedding the time and label of
+          the training data. This is done by running both these through a linear
+          layer, gelu, then another linear layer. We do this two times and embed
+          at the unflatten layer and up convolve layer:
+          <MathJax>
+            {"\\begin{equation*} x = c \\cdot x + t \\end{equation*}"}
+          </MathJax>
+          The forward process in the conditional unet is mostly the same. We add
+          noise given by our new one step noising process. A mask is also
+          created with a certain probability to run unconditioned predictions to
+          make the model more flexible. Instead of predicting the clean image,
+          the model will predict the noise and we update it based on{" "}
+          <MathJax>{"MSE\\((\\hat{\\varepsilon}, \\varepsilon)\\)"}</MathJax>
+        </p>
+        <ImageContainer>
+          <Figure>
+            <Image
+              src={path.join(mediaBase, "/conditional_unet/loss.png")}
+              alt="Conditional Unet Loss"
+              width="64"
+              height="64"
+              loading="lazy"
+            />
+            <figcaption>After 20 Epochs</figcaption>
+          </Figure>
+        </ImageContainer>
+        <p>
+          In the sampling/denoising process, we iteratively predict the cleaner
+          image given the formula for{" "}
+          <MathJax inline={true}>{"\\(x_{t - 1}\\)"}</MathJax> calculated above.
+          Hover over the images to see the denoising in action:
+        </p>
+        <ImageContainer>
+          <Figure>
+            <ImageContainer>
+              <Image
+                src={path.join(mediaBase, "/conditional_unet/sampling1.jpeg")}
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 1 jpeg"
+                loading="lazy"
+                // onMouseOver="resetSiblingGif(this)"
+                className="dissolve"
+              />
+              <Image
+                src="./media/conditional_unet/sampling1.gif"
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 1"
+                loading="lazy"
+                className="emerge"
+              />
+            </ImageContainer>
+            <figcaption>Epoch 1</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                src={path.join(mediaBase, "/conditional_unet/sampling5.jpeg")}
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 5 jpeg"
+                loading="lazy"
+                // onMouseOver="resetSiblingGif(this)"
+                className="dissolve"
+              />
+              <Image
+                src="./media/conditional_unet/sampling5.gif"
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 5"
+                loading="lazy"
+                className="emerge"
+              />
+            </ImageContainer>
+            <figcaption>Epoch 5</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                src={path.join(mediaBase, "/conditional_unet/sampling10.jpeg")}
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 10 jpeg"
+                loading="lazy"
+                // onMouseOver="resetSiblingGif(this)"
+                className="dissolve"
+              />
+              <Image
+                src="./media/conditional_unet/sampling10.gif"
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 10"
+                loading="lazy"
+                className="emerge"
+              />
+            </ImageContainer>
+            <figcaption>Epoch 10</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                src={path.join(mediaBase, "/conditional_unet/sampling15.jpeg")}
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 15 jpeg"
+                loading="lazy"
+                // onMouseOver="resetSiblingGif(this)"
+                className="dissolve"
+              />
+              <Image
+                src="./media/conditional_unet/sampling15.gif"
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 15"
+                loading="lazy"
+                className="emerge"
+              />
+            </ImageContainer>
+            <figcaption>Epoch 15</figcaption>
+          </Figure>
+          <Figure>
+            <ImageContainer>
+              <Image
+                src={path.join(mediaBase, "/conditional_unet/sampling20.jpeg")}
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 20 jpeg"
+                loading="lazy"
+                // onMouseOver="resetSiblingGif(this)"
+                className="dissolve"
+              />
+              <Image
+                src="./media/conditional_unet/sampling20.gif"
+                width="64"
+                height="64"
+                alt="Conditional Unet Sampling 20"
+                loading="lazy"
+                className="emerge"
+              />
+            </ImageContainer>
+            <figcaption>Epoch 20</figcaption>
+          </Figure>
+        </ImageContainer>
+      </div>
+    ),
+  },
 ];
 
 export default function Page() {

@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 export type articleElem = {
   id: string;
-  content: JSX.Element;
+  content: React.ReactElement;
   link?: string;
 };
 

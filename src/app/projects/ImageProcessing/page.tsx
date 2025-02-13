@@ -9,14 +9,11 @@ import {
   Section,
   Article,
 } from "@/components/ContentContainer";
-import { ImageContainer } from "@/components/ImageContainer";
-import Image from "next/image";
 import { MathJax } from "better-react-mathjax";
 
 import type { articleElem } from "@/components/ContentContainer";
 
 const base = "/projects/ImageProcessing/";
-const mediaBase = path.join(base, "media");
 
 const pageContent: articleElem[] = [
   {

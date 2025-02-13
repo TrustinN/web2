@@ -10,7 +10,6 @@ import {
   Article,
 } from "@/components/ContentContainer";
 import type { articleElem } from "@/components/ContentContainer";
-import { Float } from "@/components/Layouts";
 import { Sidebar } from "@/components/Sidebar";
 
 import { ImageContainer } from "@/components/ImageContainer";

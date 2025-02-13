@@ -4,11 +4,21 @@ import { twMerge } from "tailwind-merge";
 export const Figure = ({ children }: { children: React.ReactNode }) => {
   return (
     <figure>
-      {React.Children.map(children, (child) =>
-        React.cloneElement(child, {
-          className: twMerge(child.props.className, "w-full text-center"),
-        }),
-      )}
+      {React.Children.map(children, (child) => {
+        if (
+          React.isValidElement<{ className: string }>(child) &&
+          typeof child.type !== "string"
+        ) {
+          // Clone the child and merge className
+          return React.cloneElement(child, {
+            className: twMerge(
+              (child.props as { className?: string }).className,
+              "w-full text-center",
+            ),
+          });
+        }
+        return child; // Return unmodified if it's a string or other primitive
+      })}
     </figure>
   );
 };
@@ -40,11 +50,21 @@ export const ImageContainer = ({
         `grid ${columnVariants[columns]} gap-4 items-center justify-center w-full max-w-[90%] mx-auto py-4 ${className} `,
       )}
     >
-      {React.Children.map(children, (child) =>
-        React.cloneElement(child, {
-          className: twMerge(child.props.className, "w-full"),
-        }),
-      )}
+      {React.Children.map(children, (child) => {
+        if (
+          React.isValidElement<{ className: string }>(child) &&
+          typeof child.type !== "string"
+        ) {
+          // Clone the child and merge className
+          return React.cloneElement(child, {
+            className: twMerge(
+              (child.props as { className?: string }).className,
+              "w-full",
+            ),
+          });
+        }
+        return child; // Return unmodified if it's a string or other primitive
+      })}
     </div>
   );
 };
